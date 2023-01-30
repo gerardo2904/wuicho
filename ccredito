@@ -1,0 +1,1168 @@
+    $pdf=new PDF(P,'mm','Legal'); 
+	$pdf->Open();  
+	$pdf->AddPage();
+	$pdf->SetFont('Arial','B',12); 
+	$pdf->AliasNbPages();
+	$pdf->Ln(10);
+	$pdf->Image('Imagenes/londres_logo4.jpg',20,17,45);
+	$pdf->SetLeftMargin(70);
+	$pdf->Cell(100,-5,trim($row_emp["nombre_empresa"]),0,0,P);
+	$pdf->SetFont('Arial','',12); 
+	$pdf->Ln(1);
+	if (strlen($row_emp["registro_empresa"])==0) {$t="";} else {$t=", ".trim($row_emp["registro_empresa"]);}
+	$pdf->Cell(50,3,'RFC '.trim($row_emp["rfc_empresa"]).$t,0,0,P);
+	$pdf->Ln(4);
+	$pdf->Cell(50,3,trim($row_emp["domicilio_empresa"]),0,0,P);
+	$pdf->Ln(4);
+	$pdf->Cell(50,3,trim($row_emp["ciudad_empresa"]).', '.trim($row_emp["estado_empresa"]),0,0,P);	
+	
+	$t="";
+	if (strlen($row_emp["tel_empresa"])>0)
+	{$t="Telefono(s) ".trim($row_emp["tel_empresa"]);} else {$t="";}
+	if (strlen($row_emp["tel_empresa"])>0 AND strlen($row_emp["fax_empresa"])>0)
+	{$t=$t.", Fax ".trim($row_emp["fax_empresa"]);}
+	if (strlen($row_emp["tel_empresa"])==0 AND strlen($row_emp["fax_empresa"])>0)
+	{$t="Fax ".trim($row_emp["fax_empresa"]);}
+	if (strlen($row_emp["tel_empresa"])>=1 || strlen($row_emp["fax_empresa"])>=1)
+	{
+		$pdf->Ln(4);
+		$pdf->Cell(50,3,$t,0,0,P);	
+	}
+	if (strlen($row_emp["email_empresa"])>0)
+	{
+		$pdf->Ln(4);
+		$pdf->Cell(11,3,"email ",0,0,L);
+		$pdf->SetFont('Times','BIU');
+		$pdf->SetTextColor(0,0,255);
+		$pdf->Cell(0,3,trim($row_emp["email_empresa"]),0,0,"L",false,"mailto:\\".trim($row_emp["email_empresa"]));
+	}
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(7);	
+	$pdf->SetFont('Times','B');
+	$pdf->SetTextColor(255,0,0);
+	$pdf->Cell(53,3,'CONTRATO: '.trim($row_contra["contrato"]),0,0);
+	$pdf->SetTextColor(0,0,255);
+	$pdf->Ln(5);	
+	if ($row_contra["garantia"]==1)
+	{
+		$pdf->Cell(53,3,'TIPO "A" VEHICULO MOTOR VENDIDO CON GARANTIA',0,0);
+	}
+	else
+	{
+		$pdf->Cell(53,3,'TIPO "B" VEHICULO MOTOR VENDIDO SIN GARANTIA',0,0);
+	}
+	$pdf->SetFont('Arial','',11); 
+	$pdf->SetTextColor(0,0,0);
+	$pdf->SetLeftMargin(20);
+	//$pdf->SetRightMargin(30);
+	$pdf->Ln(8);
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$str=iconv("UTF-8", "windows-1252","Contrato de compra venta con reserva de dominio de vehículo usado, que celebran por una parte la");
+	}else{
+		$str=iconv("UTF-8", "windows-1252","Contrato de compra venta con reserva de dominio de vehículo usado, que celebran por una parte el");
+	}
+		$pdf->Cell(163,3,$str,0,0,"FJ");
+	$pdf->Ln(4);
+	$pdf->SetFont('Arial','BIU',11);
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$str=iconv("UTF-8", "windows-1252",trim($row_emp["representante_empresa"]).",");
+	}else{
+		$str=iconv("UTF-8", "windows-1252","C. ".trim($row_emp["representante_empresa"]).",");
+	}
+	
+
+	$pdf->Cell(163,3,$str,0,0,"C");
+		$pdf->SetFont('Arial','',11);
+	//$pdf->SetLeftMargin(95);
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv("UTF-8", "windows-1252","Propietario y/o Representante Legal de la negociación denominada");
+		$pdf->Cell(163,3,$str,0,0,"FJ");
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	
+	//$str=iconv("UTF-8", "windows-1252","Legal de la negociación denominada ");
+	//$pdf->Cell(10,3,$str,0,0);
+	$pdf->SetFont('Arial','BIU',11);
+	$pdf->SetLeftMargin(20);
+	
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$str=iconv("UTF-8", "windows-1252","MARIA ANGELICA DIAZ DE LEON FLEURY".",");
+		
+	}else{
+		$str=iconv("UTF-8", "windows-1252",trim($row_emp["nombre_empresa"]).",");
+	}
+			$pdf->Cell(163 ,3,$str,0,0,"C");	
+			$pdf->Ln(4);
+	$pdf->SetFont('Arial','',11);
+	$pdf->SetLeftMargin(20);
+	
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+	$str=iconv("UTF-8", "windows-1252","representada por conducto de su Albacea, el Sr. César Antonio Cázares Díaz de León,");
+		$pdf->Cell(163,3,$str,0,0,"FJ");		
+	
+	$pdf->Ln(4);
+	$str=iconv("UTF-8", "windows-1252","a quien en lo sucesivo se le denominara el vendedor y por otra parte el");
+		$pdf->Cell(163,3,$str,0,0,"FJ");		
+		
+	}else{
+	$str=iconv("UTF-8", "windows-1252","a quien en lo sucesivo se le denominara el vendedor y por otra parte el");
+		$pdf->Cell(163,3,$str,0,0,"FJ");	
+	}
+	
+	$pdf->SetLeftMargin(20);
+	//$pdf->Ln(4);
+	//$str=iconv("UTF-8", "windows-1252","denominara el vendedor y por otra parte el: ");
+	//	$pdf->Cell(58,3,$str,0,0,"L");	
+		$pdf->Ln(4);
+	$pdf->SetFont('Arial','BIU',11);
+	$pdf->SetLeftMargin(20);
+	$str=iconv('UTF-8', 'windows-1252',"C. ".trim($row_contra["nombre_cliente"]).",");
+	$pdf->Cell(163,3,$str,0,0,"C");	
+	//$pdf->MultiCell(92,3,$str,0,'FJ');
+	$pdf->SetLeftMargin(20);
+	$pdf->SetFont('Arial','',11);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"a quien se le denominara el comprador al tenor de la siguientes declaraciones y cláusulas:");
+		$pdf->Cell(164,3,$str,0,0,"FJ");	
+
+//**************************************************
+//** Informacion adicional en encabezado para aval**
+//**************************************************
+
+$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"aval ".trim($row_ava['nombre_aval']));
+		$pdf->Cell(164,3,$str,0,0,"FJ");	
+//**************************************************
+//** Termina Informacion de encabezado para aval  **
+//**************************************************
+
+
+	$pdf->Ln(6);
+	$pdf->SetFont('Arial','B',15);
+	$pdf->Cell(0,3,"DECLARACIONES",0,0,'C');	
+	$pdf->Ln(6);
+	$pdf->SetFont('Arial','',11);
+	$pdf->Cell(53,3,"DECLARA EL VENDEDOR:",0,0);	
+	$pdf->Ln(4);
+
+
+	$str=iconv('UTF-8', 'windows-1252',"I.-  Ser una persona física, cuya actividad preponderante es la compra venta de vehículos usados. ");
+		$pdf->Cell(164,3,$str,0,0,"FJ");	
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"         que cuenta con la infraestructura y capacidad necesarias para la comercialización de vehículos ");
+		$pdf->Cell(164,3,$str,0,0,"FJ");		
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"    usados, contando también con las licencias, permisos, avisos y autorizaciones necesarias");
+		$pdf->Cell(164,3,$str,0,0,"FJ");
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"   para llevar a cabo su actividad y que el vehículo usado materia de esta operación de");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+		
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"    compraventa cumple con todos y cada uno de los lineamientos en materia de control de");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"   de emisión de contaminantes, protección al medio ambiente, así como con todas las");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252'," especificaciones legales y comerciales para poder ser comercializado.");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+
+	//////////////////////////////////////////////// SI es susesion a bienes...
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+	$pdf->Ln(6);	
+	$str=iconv('UTF-8', 'windows-1252',"   Que cuenta con personalidad jurídica toda vez que le fue designado el carácter de ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"    Albacea por parte de la Señora María Angélica Díaz de León Fleury, mismo que fue ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"    aceptado y protestado en esta misma ciudad , el día 06 de Junio del dos mil cinco , ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"  mediante la junta de herederos prevista por el artículo 776 del Código de ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");
+	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"      Procedimientos Civiles. ");
+	$pdf->Cell(164,3,$str,0,0,"FL");
+	
+	}
+	//////////////////////////////////////////////// FIN susesion a bienes...
+
+
+	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"II.- Tener su domicilio en: ");
+		$pdf->Cell(44,3,$str,0,0);	
+	//$pdf->Ln(4);
+	$pdf->SetLeftMargin(40);
+	
+	$str=iconv('UTF-8', 'windows-1252',trim($row_emp["domicilio_empresa"]).",");
+		$pdf->Cell(122,3,$str,0,0,"FJ");
+	$pdf->SetLeftMargin(25);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',trim($row_emp["ciudad_empresa"]).",".trim($row_emp["estado_empresa"]).", con registro federal de contribuyentes ".trim($row_emp["rfc_empresa"])." con horario de");
+		$pdf->Cell(158,3,$str,0,0,"FJ");
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"atención al público de ");
+		$pdf->Cell(40,3,$str,0,0,P);
+	$pdf->SetFont('Arial','B',11);
+	$str=iconv('UTF-8', 'windows-1252',"LUNES A SABADO DE 9:00 A.M. A 7:00 P.M. y télefonos");
+		$pdf->Cell(57,3,$str,0,0,P);
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',trim($row_emp["tel_empresa"]));
+		$pdf->Cell(57,3,$str,0,0,P);
+		
+	
+	$pdf->SetFont('Arial','',11);
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"III.-Que es una persona física con actividad empresarial.");
+		$pdf->Cell(50,3,$str,0,0,P);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"IV.-Declara el vendedor que previamente a la celebración del presente contrato le ha informado");
+		$pdf->Cell(164,3,$str,0,0,FJ);
+	$pdf->Ln(4);
+	$pdf->SetLeftMargin(26);
+	$str=iconv('UTF-8', 'windows-1252',"al comprador de todas y cada una de las condiciones generales mecánicas del vehículo,");
+		$pdf->Cell(157,3,$str,0,0,FJ);	
+		
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"para que en su caso sea revisado por este último agregando que el comprador");
+	$pdf->Cell(157,3,$str,0,0,FJ);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"comprador tuvo a su disposición por un período de tiempo de veinticuatro horas el vehículo");
+	$pdf->Cell(157,3,$str,0,0,FJ);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"materia de la compraventa para verificar su estado tanto físico como mecánico en el taller");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"de su preferencia.");
+	$pdf->Cell(157,3,$str,0,0,FL);
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"V.-Que tiene la infraestructura y capacidad técnica en equipo y mano de obra para proporcionar");
+	$pdf->Cell(164,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$pdf->SetLeftMargin(26);
+	$str=iconv('UTF-8', 'windows-1252',"en un establecimiento los servicios de garantía, siempre y cuando ésta se ofrezca");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"dentro del clausulado de este contrato.");
+	$pdf->Cell(157,3,$str,0,0,FL);
+	
+	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"VI.-Que es el legítimo propietario del vehículo materia de este contrato y que previamente ");
+	$pdf->Cell(164,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$pdf->SetLeftMargin(26);
+	$str=iconv('UTF-8', 'windows-1252',"a la celebración de este contrato proporcionó al comprador toda la información ");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"relativa al costo total del vehículo, el monto de los intereses moratorios, la tasa que calculará");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"calculará el monto y detalle de los cargos, el número de pagos a realizar, su periodicidad, la");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"cantidad total a pagar, el monto para liquidar anticipadamente, el costo del financiamiento, de");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"apertura de crédito e investigación, tal y como quedarán especificadas a detalle en el");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"clausulado de este contrato.");
+	$pdf->Cell(157,3,$str,0,0,FL);
+	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"VII.-Que para la entrega del automóvil materia de la compraventa, el comprador deberá ");
+	$pdf->Cell(164,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$pdf->SetLeftMargin(26);
+	$str=iconv('UTF-8', 'windows-1252',"pagar un enganche, mismo que quedará especificado en clausula correspondiente");
+	$pdf->Cell(157,3,$str,0,0,FJ);
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"de este contrato.");
+	$pdf->Cell(157,3,$str,0,0,FL);
+	
+	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(10);
+	$str=iconv('UTF-8', 'windows-1252',"DECLARA EL COMPRADOR:");
+	$pdf->Cell(53,3,$str,0,0,FJ);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"I.- Llamarse como ha quedado expresado, tener su domicilio: 	"); 
+		$pdf->Cell(164,3,$str,0,0,FJ);
+		
+	$pdf->SetLeftMargin(24);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',trim($row_contra["domicilio_cliente"]).",");
+		$pdf->Cell(159,3,$str,0,0,FJ);
+	//Revisar aqui.....	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',trim($row_contra["ciudad_cliente"]).",".trim($row_contra["estado_cliente"]).", con registro federal de causantes ".trim($row_contra["rfc_cliente"])." y tener la suficiente  ");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"capacidad legal y  jurídica para obligarse en los términos de este contrato, manifestando que");
+	$pdf->Cell(0,3,$str,0,0,P);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"antes de firmarlo lo ha leído y comprendido a cabalidad.");
+	$pdf->Cell(0,3,$str,0,0,P);	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"II.-Que los datos que aporta relativos a su domicilio y que se señalan en la declaración que ");
+		$pdf->Cell(164,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$pdf->SetLeftMargin(24);
+	$str=iconv('UTF-8', 'windows-1252',"antecede son los que deberán de ser utilizados para cualquier tipo de notificaciones que");
+	$pdf->Cell(161,3,$str,0,0,"FJ");	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"se susciten y deriven con motivo de la celebración de este contrato.");
+	$pdf->Cell(161,3,$str,0,0,"FJ");	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"III.- Que previamente a la celebración del presente contrato, se le informó al comprador sobre el ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");	
+	
+	$pdf->SetLeftMargin(24);	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"precio de contado del vehículo usado, objeto del presente contrato, el monto de los intereses, ");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"la tasa que se calcularan, el monto y detalle de los cargos, el número de pagos a realizar, ");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"su periodicidad, la cantidad total a pagar por dicho vehículo y el derecho que tiene a liquidar");
+		$pdf->Cell(0,3,$str,0,0,P);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"anticipadamente el crédito con la consiguiente reducción de intereses. ");
+		$pdf->Cell(0,3,$str,0,0,P);	
+	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"IV.- Que previamente a la celebración del presente contrato le ha informado el vendedor de");
+	$pdf->Cell(164,3,$str,0,0,"FJ");	
+	
+	$pdf->SetLeftMargin(24);	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"todas y cada una de las condiciones generales mecánicas del vehículo, para que en su caso");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"sea revisado por su cuenta y que tuvo a su disposición por un período de tiempo de veinticuatro");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"horas el vehículo materia de la compraventa para verificar su estado tanto físico como");
+		$pdf->Cell(0,3,$str,0,0,P);	
+	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"mecánico en el taller de su preferencia.");
+		$pdf->Cell(0,3,$str,0,0,P);	
+
+
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"V.- El comprador está de acuerdo en que para que le sea entregado el automóvil materia de la ");
+	$pdf->Cell(164,3,$str,0,0,"FJ");	
+	
+	$pdf->SetLeftMargin(24);	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"compraventa, está de acuerdo en pagar un enganche, mismo que quedará especificado en");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"clausula correspondiente de este contrato.");
+		$pdf->Cell(0,3,$str,0,0,P);	
+		
+////////////
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"VI.- Que es su deseo comprar el vehículo descrito en la cláusula primera del presente contrato,");
+	$pdf->Cell(164,3,$str,0,0,"FJ");	
+	
+	$pdf->SetLeftMargin(24);	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"en las condiciones de uso y estado en que se encuentra, que lo conoce perfectamente en");
+		$pdf->Cell(161,3,$str,0,0,"FJ");	
+
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"mérito de que lo revisó a su entera satisfacción y que está de acuerdo en el importe de la");
+		$pdf->Cell(0,3,$str,0,0,P);	
+		
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"operación de compraventa del vehículo materia de la misma.");
+		$pdf->Cell(0,3,$str,0,0,P);	
+		
+	$pdf->Ln(8);
+	$pdf->SetFont('Arial','B',15);
+	$pdf->Cell(0,3,"CLAUSULAS",0,0,'C');	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(8);
+	$pdf->SetFont('Arial','',11);
+	$str=iconv('UTF-8', 'windows-1252',"PRIMERA.- El vendedor vende y el comprador compra el vehículo que a continuación se describe:");
+		$pdf->Cell(164,3,$str,0,0,"FJ");
+	$pdf->SetLeftMargin(24);
+	$pdf->Ln(6);
+	$pdf->SetFont('Arial','B',10);
+	$pdf->Cell(25,3,"MODELO ",0,0);$pdf->Cell(55,3,$row_autos_d["ano"],0,0);$pdf->Cell(25,3,"UNIDAD",0,0);$pdf->Cell(55,3,$row_autos_d["marca"]);
+	
+	$i="";
+	switch ($row_autos_d["estilo"]) {
+    case "automovil":
+        $i="Automovil";
+        break;
+    case "todoterreno":
+        $i="Todo Terreno";
+        break;
+    case "pickup":
+        $i="Pickup";
+        break;
+	case "minivan":
+        $i="Mini Van";
+        break;	
+	}
+	$pdf->Ln(4);
+	$pdf->Cell(25,3,"TIPO ",0,0);$pdf->Cell(55,3,$i,0,0);$pdf->Cell(25,3,"LINEA",0,0);$pdf->Cell(55,3,$row_autos_d["modelo"]);
+	//$pdf->Cell(0,3,$row_autos_d["marca"]." ".$row_autos_d["modelo"]." ".$row_autos_d["ano"].", el cual tiene motor de ".$row_autos_d["motor"]." cilindros y odometro con ".$row_autos_d["km"]." millas.",0,0,P);
+	$pdf->Ln(4);
+	$pdf->Cell(25,3,"ODOMETRO ",0,0);$pdf->Cell(55,3,number_format($row_autos_d["km"]),0,0);$pdf->Cell(25,3,"COLOR",0,0);$pdf->Cell(55,3,$row_autos_d["color"]);
+	//$pdf->Cell(0,3,$row_autos_d["especificaciones"],0,0,P);
+	$pdf->Ln(4);
+	$pdf->Cell(25,3,"CILINDROS ",0,0);$pdf->Cell(55,3,$row_autos_d["motor"],0,0);$pdf->Cell(25,3,"SERIE",0,0);$pdf->Cell(55,3,$row_autos_d["serie"]);
+	//$pdf->Cell(0,3,"No. serie: ".trim($row_autos_d["serie"]).", No. pedimento: ".trim($row_autos_d["pedimento"]).", Aduana: ".trim($row_autos_d["aduana"]),0,0,P);
+	$pdf->Ln(4);
+	$pdf->Cell(25,3,"ADUANA ",0,0);$pdf->Cell(55,3,$row_autos_d["aduana"],0,0);$pdf->Cell(25,3,"PEDIMENTO",0,0);$pdf->Cell(55,3,$row_autos_d["pedimento"]);
+	
+	$pdf->SetFont('Arial','',11);
+	$pdf->Ln(6);
+	$pdf->Cell(0,3,"El cual cuenta con el siguiente inventario: ",0,0,P);
+	$pdf->SetFont('Arial','B',8);
+	$pdf->Ln(6);
+    // Tabla con inventario del auto vendido.
+	$header=array('EXTERIORES','INTERIORES','ACCESORIOS');
+	$pdf->BasicTable($header,$data);
+	$pdf->Cell(35,5,"Unidad de luces",1); 
+	$pdf->Cell(5,5,($row_contra["u_luces"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Instrumento de tablero",1); 
+	$pdf->Cell(5,5,($row_contra["tablero"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Gato",1); 
+	$pdf->Cell(5,5,($row_contra["gato"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 
+	$pdf->Cell(35,5,"Luces",1); 
+	$pdf->Cell(5,5,($row_contra["luces"]==0)?"No":"Si",1); 
+	$str=iconv('UTF-8', 'windows-1252',"Calefaccion");
+		$pdf->Cell(35,5,$str,1); 
+	$pdf->Cell(5,5,($row_contra["calefaccion"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Llave de tuercas",1); 
+	$pdf->Cell(5,5,($row_contra["cruceta"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 
+	$pdf->Cell(35,5,"Antena",1); 
+	$pdf->Cell(5,5,($row_contra["antena"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Aire acondicionado",1); 
+	$pdf->Cell(5,5,($row_contra["aire"]==0)?"No":"Si",1); 
+	$str=iconv('UTF-8', 'windows-1252',"Llanta de refaccion");
+		$pdf->Cell(35,5,$str,1); 
+	$pdf->Cell(5,5,($row_contra["llanta_refa"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 
+	$pdf->Cell(35,5,"Espejos laterales",1); 
+	$pdf->Cell(5,5,($row_contra["espejos"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Limpiadores (plumas)",1); 
+	$pdf->Cell(5,5,($row_contra["limpiadores"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Estuche de herramientas",1); 
+	$pdf->Cell(5,5,($row_contra["estuche_he"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 	
+	$pdf->Cell(35,5,"Cristales en buen estado",1); 
+	$pdf->Cell(5,5,($row_contra["cristales"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Radio",1); 
+	$pdf->Cell(5,5,($row_contra["radio"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"triangulo de seguridad",1); 
+	$pdf->Cell(5,5,($row_contra["triangulo"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 		
+	$pdf->Cell(35,5,"Tapones de rueda",1); 
+	$pdf->Cell(5,5,($row_contra["tapones"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Bocinas",1); 
+	$pdf->Cell(5,5,($row_contra["bocinas"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Extinguidor",1); 
+	$pdf->Cell(5,5,($row_contra["extinguidor"]==0)?"No":"Si",1); 
+	$pdf->Ln(5); 	
+	$pdf->Cell(35,5,"Molduras completas",1); 
+	$pdf->Cell(5,5,($row_contra["molduras"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Espejo retrovisor",1); 
+	$pdf->Cell(5,5,($row_contra["retrovisor"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"",1); 
+	$pdf->Cell(5,5,"",1); 
+	$pdf->Ln(5); 	
+	$str=iconv('UTF-8', 'windows-1252',"Tapon de gasolina");
+		$pdf->Cell(35,5,$str,1); 
+	$pdf->Cell(5,5,($row_contra["tapon_gas"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Ceniceros",1); 
+	$pdf->Cell(5,5,($row_contra["ceniceros"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5," ",1); 
+	$pdf->Cell(5,5,"",1); 
+	$pdf->Ln(5); 	
+	$str=iconv('UTF-8', 'windows-1252',"Carroceria sin golpes");
+		$pdf->Cell(35,5,$str,1); 
+	$pdf->Cell(5,5,($row_contra["carroceria_sin_golpes"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5,"Cinturones de seguridad",1); 
+	$pdf->Cell(5,5,($row_contra["cinturones"]==0)?"No":"Si",1); 
+	$pdf->Cell(35,5," ",1); 
+	$pdf->Cell(5,5,"",1); 
+	$pdf->Ln(10);
+	//$pdf->AddPage();
+	$pdf->Ln(5);
+	$pdf->SetFont('Arial','',11);
+	$pdf->Cell(53,3,"OBSERVACIONES ACERCA DE LAS CONDICIONES GENERALES DEL VEHICULO",0,0);	
+	$pdf->SetFont('Arial','',11);
+	$pdf->Ln(5);
+	$pdf->Cell(38,3,"A) CARROCERIA ",0,0);	
+	$pdf->Cell(0,3,$row_contra["aspecto_car"],0,0);	
+	$pdf->Ln(5);
+	$pdf->Cell(38,3,"B) MECANICO ",0,0);	
+	$pdf->Cell(0,3,$row_contra["aspecto_mec"],0,0);	
+	$pdf->Ln(5);
+	$pdf->Cell(38,3,"C) LLANTAS ",0,0);	
+	$pdf->Cell(0,3,$row_contra["aspecto_llantas"],0,0);	
+	
+	if (strlen($row_contra["otros_aspectos"])>=1){
+	$pdf->Ln(5);
+	$pdf->Cell(38,3,"D) ".$row_contra["otros_aspectos"],0,0);	
+	$pdf->Cell(0,3,$row_contra["aspecto_otros"],0,0);	
+	}
+	$pdf->Ln(8);
+	$str=iconv('UTF-8', 'windows-1252',"La Unidad descrita con anterioridad será entregada el dia: ");
+		$pdf->Cell(101,3,$str,0,0);	
+	$pdf->SetFont('Arial','BU',10);
+	
+	$dia=substr($row_contra["fecha_entrega"],0,2);
+	$mes=substr($row_contra["fecha_entrega"],3,2);
+	$ano=substr($row_contra["fecha_entrega"],6,4);
+	$fecha_entrega=$dia."-".$mes."-".$ano;
+	$fe="";
+	$fe=nombre_fecha($fecha_entrega);
+	if (intval($dia)==0 || intval($mes)==0 || intval($ano)==0) {$fe="";} 
+	//$pdf->Cell(0,3,$row_contra["fecha_entrega"],0,0);
+	$pdf->Cell(0,3,$fe,0,0);
+	$pdf->SetFont('Arial','',10);
+	//$pdf->Ln(8);
+	//$pdf->Cell(163,3,"Nombre y firma del cliente: ",0,0,"C");	
+	//$pdf->Ln(4);
+	
+	/*
+	$pdf->SetFont('Arial','BU',10);
+		$str=iconv('UTF-8', 'windows-1252',trim($row_contra["nombre_cliente"]));
+		$pdf->Cell(163,3,$str,0,0,"C");	
+	$pdf->SetFont('Arial','',10);	
+	$pdf->Ln(4);
+		$pdf->Cell(163,3,"Nombre y firma del cliente ",0,0,"C");	
+	$pdf->SetFont('Arial','',10);
+	$pdf->SetLeftMargin(20);
+	$pdf->SetFont('Arial','',11);
+	
+	
+	$pdf->AddPage();  */
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(10);
+	$str=iconv('UTF-8', 'windows-1252',"SEGUNDA.- El vendedor en este acto, exhibe al comprador la documentación en copia simple que ampara la propiedad del vehículo descrito en la cláusula anterior, cerciorado de que dicha documentación corresponde fielmente al citado vehículo y se encuentra en regla quedando en poder del vendedor la documentación original, hasta en tanto no sea liquidado totalmente el precio pactado.");
+	$pdf->MultiCell(164,4,$str,0,'J');
+	
+	//$pdf->Cell(161,3,$str,0,0,"FJ");
+	//$pdf->Ln(5);
+	//$str=iconv('UTF-8', 'windows-1252',"la propiedad del vehículo descrito en la cláusula anterior, cerciorado de que dicha documentación");
+	//	$pdf->Cell(161,3,$str,0,0,"FJ");
+	//$pdf->Ln(5);
+	//$str=iconv('UTF-8', 'windows-1252',"corresponde fielmente al citado vehículo y se encuentra en regla quedando en poder del vendedor la ");
+	//	$pdf->Cell(162,3,$str,0,0,"FJ");
+	//$pdf->Ln(5);
+	//$str=iconv('UTF-8', 'windows-1252',"documentación original, hasta en tanto no sea liquidado totalmente el precio pactado.");
+	//	$pdf->Cell(161,3,$str,0,0,P);
+	$pdf->Ln(8);
+	$pdf->SetLeftMargin(24);
+	$str=iconv('UTF-8', 'windows-1252',"Factura Numero: ");
+		$pdf->Cell(75,3,$str,0,0);
+	$str=iconv('UTF-8', 'windows-1252',"Expedida por: ");
+		$pdf->Cell(65,3,$str,0,0);
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"Pago de tenencia Vehicular por los años:");
+		$pdf->Cell(85,3,$str,0,0);
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"Tarjeta de circulación número:");
+		$pdf->Cell(85,3,$str,0,0);	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"Otros documentos ");
+		$pdf->Cell(85,3,$str,0,0);		
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(8);	
+	$str=iconv('UTF-8', 'windows-1252',"TERCERA.- El precio de la compraventa lo han determinado de común acuerdo el vendedor y el comprador sobre las siguientes bases:");
+	$pdf->MultiCell(164,4,$str,0,'J');
+	//	$pdf->Cell(161,3,$str,0,0,FJ);
+		
+	//$pdf->Ln(4);
+	//$str=iconv('UTF-8', 'windows-1252',"sobre las siguientes bases:");
+	//	$pdf->Cell(0,3,$str,0,0,'');
+
+		$pdf->Ln(8);
+	$i="";
+	//echo "Moneda: ".$row_contra["moneda"]."<BR>";
+	switch ($row_contra["moneda"]) {
+    case "Dolar":
+        $i="DLLS. MONEDA DE LOS EUA.";
+        break;
+    case "Peso":
+        $i="PESOS. MONEDA NACIONAL MEXICANA";
+        break;
+	}
+	//echo "Moneda: ".$i."<BR>";
+	$pdf->SetFont('Arial','',10);
+	$str=iconv('UTF-8', 'windows-1252',"VALOR DE LA UNIDAD ");
+		$pdf->Cell(75,3,$str,0,0);
+	
+ 	
+		$str=iconv('UTF-8', 'windows-1252',"$".number_format($row_contra["cprecio"],2));
+		$pdf->Cell(25,3,$str,0,0,"R");
+	$str=iconv('UTF-8', 'windows-1252',$i);	
+		$pdf->Cell(69,3,$str,0,0,"R");
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"ENGANCHE A LA FIRMA DEL CONTRATO");
+		$pdf->Cell(75,3,$str,0,0);
+	
+	$pdf->Cell(26,3,"("."$".number_format($row_contra["cenganche"],2).")",0,0,"R");
+
+		$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"UNIDAD USADA A CUENTA ");
+		$pdf->Cell(75,3,$str,0,0);
+		$v=$row_contra["cacuenta"];if (is_int((int) $v)) {$v=$v.".00";}
+		$pdf->Cell(26,3,"("."$".number_format($row_contra["cacuenta"],2).")",0,0,"R");	
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"SALDO ");
+		$pdf->Cell(75,3,$str,0,0);
+		
+		$pdf->Cell(25,3,"$".number_format($row_contra["saldo_inicial"],2),0,0,"R");
+	$pdf->Ln(6);
+	$str=iconv('UTF-8', 'windows-1252',"INTERESES ");
+		$pdf->Cell(75,3,$str,0,0);
+		
+		$pdf->Cell(25,3,"$".number_format($row_contra["cinteres"],2),0,0,"R");
+	$pdf->Ln(4);
+	$str=iconv('UTF-8', 'windows-1252',"IVA ");
+		$pdf->Cell(75,3,$str,0,0);
+		$pdf->Cell(25,3,"$".number_format($row_contra["civa"],2),0,0,"R");	
+	$pdf->Ln(6);	
+	$str=iconv('UTF-8', 'windows-1252',"SALDO ");
+		$pdf->Cell(75,3,$str,0,0);
+	$str=iconv('UTF-8', 'windows-1252',"$".number_format($row_contra["ctotal"],2));
+		$pdf->Cell(25,3,$str,0,0,"R");
+	$str=iconv('UTF-8', 'windows-1252',$i);	
+		$pdf->Cell(69,3,$str,0,0,"R");
+	$pdf->Ln(6);	
+	$str=iconv('UTF-8', 'windows-1252',"TENENCIA (POR CUENTA DEL CLIENTE)");
+		$pdf->Cell(75,3,$str,0,0);
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"PLACAS (POR CUENTA DEL CLIENTE)");
+		$pdf->Cell(75,3,$str,0,0);	
+	$pdf->Ln(4);	
+	$str=iconv('UTF-8', 'windows-1252',"OTROS (ESPECIFICAR)");
+		$pdf->Cell(75,3,$str,0,0);	
+	$pdf->Ln(6);	
+	$str=iconv('UTF-8', 'windows-1252',"INTERES MORATORIO AL ".$row_contra["moratorio"]."% MENSUAL.");
+		$pdf->Cell(75,3,$str,0,0);	
+	$pdf->Ln(8);
+	$pdf->SetFont('Arial','B',15);
+	$pdf->Cell(0,3,"MONTO DE INTERESES",0,0,'C');	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(8);
+	$pdf->SetFont('Arial','',11);
+	
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"Las partes convienen expresamente en que los intereses ordinarios causados por el total a que se refiere la cláusula tercera se cobraran a razón del porcentaje que acuerden al momento del otorgamiento del crédito y firma del presente contrato, los cuales se calcularan conforme a una tasa fija o variable en los términos de lo establecido en el artículo 66 de la Ley Federal de Protección al Consumidor y se causaran intereses moratorios, aplicando la tasa del 5%  mensual que de común acuerdo establecieron las partes al momento del otorgamiento del crédito y firma del presente contrato.");
+	//$rec=suma_fechas($row_contra["fecha_contrato"], 31);
+	$pdf->MultiCell(164,4,$texto,0,'J');	
+	
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"El comprador podrá en cualquier momento liquidar anticipadamente el saldo del precio del vehículo, en caso de estar aplicado a la promoción de cero enganche y cero intereses de financiamiento, el plazo que se acuerde puede ser de 24, 30 y 36 meses con cero de interes y cero de enganche. 
+
+En caso de solicitar 12 meses más para el pago total de su vehículo la tasa de interés sera del 20% correspondiente a los 12 últimos meses, en caso de pagar anticipadamente habrá una reducción del monto de los intereses , que aun no estén vencidos.
+
+Los pagos anticipados parciales se aplicarán en orden de fechas de los vencimientos más próximos.
+
+CUARTA: El comprador se compromete a pagar al Vendedor como precio total de este contrato, la cantidad establecida en la cláusula que antecede, en parcialidades que asciende al monto de:
+");
+	$pdf->MultiCell(164,4,$texto,0,'J');	
+	
+	$pdf->Ln(3);
+	$pdf->SetFont('Arial','B',10);
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',$row_contra["forma_pago"]);
+	$pdf->MultiCell(164,4,$texto,0,'C');
+	$pdf->Ln(4);
+	$pdf->SetFont('Arial','',11);
+	
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"Cada uno, que vencerán con la siguiente periodicidad ".  $row_contra["periodo_pagos"] ."   y en forma sucesiva los dias   ".$row_contra["dia_pagos"]." a partir del dia ");
+	//$rec=suma_fechas($row_contra["fecha_contrato"], 31);
+	
+	
+	//////////////
+	$rec=nombre_fecha($row_contra["primerpago"]);
+	/////////////
+	
+	//$pdf->MultiCell(164,4,$texto.$rec.".",0,'J');	
+	$pdf->MultiCell(164,4,$texto.$rec.".",0,'J');	
+	
+	$pdf->Ln(3);	
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"Dichos pagos podrán ser liquidados en su equivalente en Moneda Nacional, al tipo de cambio libre que rija la banca el día que se efectúe el pago.  Para tal efecto se acepta  efectivo en dólares, moneda nacional, transferencias bancarias, depósitos en cuenta de cheques. NO SE ACEPTAN TARJETAS DE CREDITO NI TARJETAS DE DEBITO DE NINGUN TIPO. 
+
+QUINTA:  Ambos contratantes convienen que el  Vendedor, de acuerdo con lo establecido en el artículo 2312 del Código Civil  para el Distrito Federal, se reserva el dominio del vehículo, materia del presente contrato, hasta que el precio pactado y derivaciones legales estén íntegramente pagados. 
+
+SEXTA: Los documentos que amparan la propiedad descrita en la cláusula segunda, permanecerán en poder del vendedor, como garantía de la reserva de dominio del vehículo objeto del presente contrato expidiéndole al comprador las copias fotostáticas respectivas que acrediten su legítima propiedad. 
+");
+	$pdf->MultiCell(164,4,$texto,0,'J');	
+	
+	//$pdf->Ln(9);
+	//$pdf->AddPage();
+	$pdf->Ln(10);
+	$pdf->SetFont('Arial','B',15);
+	$texto="";
+	if ($row_contra["garantia"]==1){
+	$pdf->Cell(0,3,"GARANTIA",0,0,'C');	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(5);
+	$pdf->SetFont('Arial','',11);
+		$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"SEPTIMA.- El comprador acepta que por tratarse de una unidad usada adquiere el vehículo objeto del presente contrato, en el estado de uso en que se encuentra, el cual le fue facilitado para su revisión general, por cuyo motivo cuenta con una garantía de 60 días de acuerdo con el artículo 77 de la Ley Federal de Protección al Consumidor cuya reforma salio publicada en DOF el 04-02-2004, y para dar cumplimiento a lo dispuesto por la NOM-122-SCFI-2010, a partir del dia");
+	//$pdf->MultiCell(164,4,$texto,0,'J');
+	//***$pdf->AddPage();
+	//$pdf->Ln(1);
+	
+	//////////////
+	$fecha1=nombre_fecha($row_contra["fecha_contrato"]);
+	$fecha2=nombre_fecha($row_contra["fecha_garantia"]);
+	/////////////
+	
+	$texto=$texto." ".iconv('UTF-8', 'windows-1252',$fecha1." y termina el dia ".$fecha2." o 3,000 millas, lo que suceda primero, en las siguientes partes: MOTOR Y TRANSMISION,   NO TIENEN GARANTIA PARTES ELECTRICAS  NI LA BOMBA DE GASOLINA. 
+
+El cumplimiento a la Garantía arriba mencionada se hará en el domicilio ubicado en Blvd. Sánchez Taboada No. 53 Zona Río de esta ciudad de Tijuana, Baja California
+");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	}
+	else
+	{
+	$pdf->Cell(0,3,"AUTO SIN GARANTIA",0,0,'C');	
+	$pdf->SetLeftMargin(20);
+	$pdf->Ln(10);
+	$pdf->SetFont('Arial','',11);
+	$texto="";
+	$texto=iconv('UTF-8', 'windows-1252',"SEPTIMA. El comprador acepta que por tratarse de una unidad usada adquiere el vehículo objeto del presente contrato, en el estado de uso en el que se encuentra, el cual le fue facilitado para su revisión general, ambas partes están  de acuerdo en que esta unidad NO TIENE GARANTIA, por lo");
+	//$pdf->MultiCell(164,4,$texto,0,'J');
+	//$pdf->AddPage();
+	//$pdf->Ln(20);
+	$texto=$texto." ".iconv('UTF-8', 'windows-1252',"cual se hace un ajuste en el precio del vehículo  por la cantidad de:___________________________, la cual aparece especificada en la Cláusula Tercera del presente contrato.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	}
+	$texto=iconv('UTF-8', 'windows-1252',"
+Firmo de Conformidad ya que el Vendedor me ha explicado y he entendido totalmente el concepto aquí contenido. 
+
+
+FIRMA DEL COMPRADOR__________________________________ FECHA____________
+");
+	
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(10);
+	$texto=iconv('UTF-8', 'windows-1252',"OCTAVA.- El comprador se obliga a no vender, ni gravar en forma alguna el vehículo objeto de este contrato, hasta que se liquide el precio en su totalidad. 
+
+NOVENA.- El Comprador tendrá la obligación de informar al Vendedor durante la vigencia del contrato sobre el cambio de domicilio que llegare a tener, en un plazo máximo de 15 dias posteriores a la verificación del cambio . En caso de incumplimiento a esta cláusula el Comprador esta de acuerdo en pagar la cantidad de $ 1,000.00 Pesos M.N. por  gastos de localización.
+
+DECIMA.- Para  dar cumplimiento a lo previsto por el artículo 70 de la Ley Federal de Protección al Consumidor, los contratantes de Común acuerdo y para el caso de que se rescindiera el presente contrato, deberán restituirse las prestaciones que se hubieran hecho si el comprador hubiera pagado mas de la tercera parte del importe de la compra venta, podrá optar por la rescisión o el pago del adeudo vencido, en términos de lo previsto por el artículo 71 del citado ordenamiento legal. 
+");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+	$texto=iconv('UTF-8', 'windows-1252',"DECIMA PRIMERA.- El comprador asumirá al momento de recibir el vehículo, la responsabilidad sobre el buen uso del mismo, desde la entrega del bien. 
+
+DECIMA SEGUNDA.- Con base en lo previsto por el artículo 66 de la Ley Federal de Protección al Consumidor, los pagos no cubiertos a su vencimiento, además del interés ordinario pactado en la 
+Cláusula Tercera del presente contrato causará un interés moratorio del 5% mensual convenidos por ambas partes de común acuerdo. 
+
+DECIMA TERCERA.- El vendedor podrá demandar la rescisión o el vencimiento del saldo del adeudo del presente contrato y en consecuencia exigir su pago total cuando ocurran cualesquiera de las siguientes causas:
+
+A) Cuando el vehículo objeto de la compra venta sufra destrucción total o daños parciales que afectan su naturaleza o éste sea materia de embargo, secuestro judicial u otro acontecimiento semejante a los citados en esta cláusula de lo que sea responsable el comprador, por cesión o traspaso de derechos o arrendamiento del vehículo y de cualquiera de los derechos que adquiere el Comprador y sin que medie consentimiento otorgado por escrito del Vendedor.
+B) Por falta de pago, a la fecha del vencimiento de dos o mas abonos pactados con excepción de cuando el comprador haya cubierto mas de la tercera parte del precio estipulado, en cuyo caso se estará a la Cláusula Décima del presente contrato; 
+C) Por haber cambiado su domicilio sin aviso al proveedor, en términos de la cláusula Novena del presente contrato. 
+");
+
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+	$texto=iconv('UTF-8', 'windows-1252',"DECIMA CUARTA.- El  Comprador tendrá derecho a demandar la rescisión del presente contrato en los siguientes casos:
+A) Por incumplimiento del Vendedor a cualesquiera de las obligaciones.
+B) Si el vehículo presentare vicios ocultos que no hayan sido informados a el comprador a través del presente contrato.
+C) Si el vendedor no entrega el vehículo en la fecha estipulada en la Cláusula Primera del presente contrato.
+D) Si el vehículo le fuera entregado al comprador en condiciones con características distintas a las señaladas en la Cláusula Primera del presente contrato. 
+
+DECIMA QUINTA.- El Vendedor se hace responsable de cualquier situación legal que anteceda a la fecha de compraventa relacionada con el vehículo anteriormente descrito sin ninguna responsabilidad para el comprador. 
+
+DECIMA SEXTA.- El comprador se hace responsable de los daños que pudiera ocasionar con el vehículo objeto del presente contrato, desde la firma del mismo.
+
+DECIMA SEPTIMA.- Los contratantes convienen que por el incumplimiento de cualesquiera de las obligaciones contenidas en el presente contrato, se aplicará una pena convencional, equivalente al 15% del precio de contado del vehículo materia del presente contrato. 
+
+DECIMA OCTAVA.- Para garantizar y asegurar el cumplimiento de todas y cada una de las obligaciones por el comprador en el presente contrato el señor (a) 
+");
+	
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	
+	
+	//$pdf->AddPage();
+	$pdf->Ln(5);
+	do {
+		
+		$texto=iconv('UTF-8', 'windows-1252',$row_ava["nombre_aval"]);
+		$pdf->Cell(75,3,$texto,0,0);
+		$pdf->Ln(5);
+		$texto=iconv('UTF-8', 'windows-1252','Nacionalidad: '.$row_ava["nacionalidad"]);
+		$pdf->Cell(75,3,$texto,0,0);
+		$pdf->Ln(5);
+		$texto=iconv('UTF-8', 'windows-1252','Estado Civil: '.$row_ava["edo_civil"]);
+		$pdf->Cell(75,3,$texto,0,0);
+		$pdf->Ln(5);
+		$texto=iconv('UTF-8', 'windows-1252','Ocupación: '.$row_ava["ocupacion"]);
+		$pdf->Cell(75,3,$texto,0,0);
+		$pdf->Ln(5);
+		$texto=iconv('UTF-8', 'windows-1252','Domicilio: '.$row_ava["domicilio_aval"]);
+		$pdf->Cell(75,3,$texto,0,0);
+		$pdf->Ln(10);
+	 } while ($row_ava = mysql_fetch_assoc($ava));
+	
+	$texto=iconv('UTF-8', 'windows-1252',"Se constituye(n) FIADOR del comprador y se obliga con este al cumplimiento de dichas obligaciones y acepta expresamente que su responsabilidad no terminará hasta que termine por cualquier causa el presente contrato.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(10);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"DECIMA NOVENA.- El vendedor tiene la obligación de expedir al comprador el comprobante respectivo que ampare el pago por la operación realizada, una vez que este último haga el último pago parcia. Asimismo, el vendedor tendrá la obligación de entregar al comprador el recibo de cada abono mensual que le vaya dando el comprador.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"VIGÉSIMA.- Para todos los efectos legales a que haya lugar, se establece la dirección de internet de la Procuraduría Federal del Consumidor, a saber: www.profeco.gob.mx, a efecto de que el comprador siempre sea protegido y asesorado por dicha institución gubernamental.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"VIGÉSIMA PRIMERA.- Así mismo, el comprador podrá realizar los pagos a que se refiere este contrato y consultar su estado de cuenta, en el que aparecerán todos y cada uno de sus pagos o amortizaciones, el saldo insoluto por vencerse o vencido, el tiempo que le falte para cubrir el adeudo, el pago de intereses ordinarios o moratorios, el IVA y cualquier otra información del crédito que contrajo, en el domicilio del vendedor, sito en Blvd. Sánchez Taboada, número 53, en la Zona Urbana del Río Tijuana, de la ciudad de Tijuana, Baja California, con horario de atención al público de  LUNES A SABADO DE 9:00 A.M. A 7:00 P.M.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+
+	$texto=iconv('UTF-8', 'windows-1252',"El estado de cuenta a que se refiere el párrafo que antecede será expedido por el vendedor de manera gratuita al comprador, pudiendo este último pedirlo de manera verbal o por escrito, teniendo el vendedor un lapso de cuarenta y dos horas para darle respuesta por escrito al comprador, misma que a petición de éste podrá ser enviada a su correo electrónico para su mayor comodidad.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(5);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"VIGÉSIMA SEGUNDA.-  Ambas partes acuerdan que la información que del comprador se obtiene por medio de este contrato no sea utilizada por el comprador con fines mercadotécnicos ni publicitarios, ni que sea cedida o transmitida a terceros, ni que se le envíe publicidad sobre bienes o servicios.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(8);
+	/*
+		$texto=iconv('UTF-8', 'windows-1252',$row_contra["nombre_cliente"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Comprador");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(26);
+	
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$texto=iconv('UTF-8', 'windows-1252',"SR. CÉSAR ANTONIO CÁZARES DÍAZ DE LEÓN, ALBACEA DE ");
+		$pdf->Cell(164,4,$texto,0,0,'C');
+		$pdf->Ln(4);
+	}
+	
+	$texto=iconv('UTF-8', 'windows-1252',$row_emp["representante_empresa"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	
+	
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Vendedor");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	*/
+	//$pdf->Ln(35);
+	$texto=iconv('UTF-8', 'windows-1252',"VIGÉSIMA TERCERA.- El comprador autoriza expresamente al vendedor para que consulte su historial crediticio en cualquier momento, en términos de lo previsto en la Ley para Regular las Sociedades de la Información Crediticia.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(8);
+	/*
+	$texto=iconv('UTF-8', 'windows-1252',$row_contra["nombre_cliente"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Comprador");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(26);
+	
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$texto=iconv('UTF-8', 'windows-1252',"SR. CÉSAR ANTONIO CÁZARES DÍAZ DE LEÓN, ALBACEA DE ");
+		$pdf->Cell(164,4,$texto,0,0,'C');
+		$pdf->Ln(4);
+	}
+	
+	$texto=iconv('UTF-8', 'windows-1252',$row_emp["representante_empresa"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	
+	
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Vendedor");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(20);
+	*/
+
+	$texto=iconv('UTF-8', 'windows-1252',"VIGÉSIMA CUARTA.- Para todos la interpretación y cumplimiento del presente contrato, ambas partes se someten y reconocen en primer término la competencia de la Procuraduría Federal del Consumidor y, en su defecto, de los Tribunales Civiles del Orden Común del Partido Judicial de la ciudad de Tijuana, baja California, México.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	
+	
+   
+	$pdf->Ln(8);
+	
+
+	$texto=iconv('UTF-8', 'windows-1252',"Leído que fue por las partes el presente contrato, así como por el fiador, deudor solidario y aval, se enteraron de su contenido y alcance legales, manifestaron su conformidad con el mismo, siendo las ".date("G")." horas con ".date("i")." minutos en la ciudad de "."Tijuana, B.C. a ".nombre_fecha($row_contra["fecha_contrato"]).", lo firmaron al margen de cada una de sus hojas y al calce de esta última.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(20);
+
+	
+	$texto=iconv('UTF-8', 'windows-1252',$row_contra["nombre_cliente"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Comprador");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(26);
+	
+	if (trim($row_emp["representante_empresa"])=="SUCESION A BIENES DE MARIA ANGELICA DIAZ DE LEON FLEURY") {
+		$texto=iconv('UTF-8', 'windows-1252',"SR. CÉSAR ANTONIO CÁZARES DÍAZ DE LEÓN, ALBACEA DE ");
+		$pdf->Cell(164,4,$texto,0,0,'C');
+		$pdf->Ln(4);
+	}
+	$texto=iconv('UTF-8', 'windows-1252',$row_emp["representante_empresa"]);
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------------------------------------");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(3);
+	$texto=iconv('UTF-8', 'windows-1252',"Vendedor");
+	$pdf->Cell(164,4,$texto,0,0,'C');
+	$pdf->Ln(26);
+	
+	$contador=1;
+	do {
+		
+		/*if ($contador==2) {
+			$pdf->Ln(15);
+		}*/
+		if ($contador==1) {
+		
+			$pos1      = strripos($row_ava2["nombre_aval"],"y se dice");
+			
+			if ($pos1 === false) {
+				$texto=iconv('UTF-8', 'windows-1252',$row_ava2["nombre_aval"]);
+				$pdf->Cell(70,4,$texto,0,0,'C');
+			}
+			else {
+				$texto=iconv('UTF-8', 'windows-1252',substr($row_ava2["nombre_aval"],0,$pos1));
+				$pdf->Cell(70,4,$texto,0,0,'C');
+				$pdf->Ln(4);
+				$texto=iconv('UTF-8', 'windows-1252',trim(substr($row_ava2["nombre_aval"],$pos1,40)));
+				$pdf->Cell(70,4,$texto,0,0,'C');
+			}
+			
+		}
+		if ($contador==2) {
+			$pos2      = strripos("se dice", $row_ava2["nombre_aval"]);
+			
+			if ($pos2 === false) {
+				$texto=iconv('UTF-8', 'windows-1252',$row_ava2["nombre_aval"]);
+				$pdf->Cell(0,4,$texto,0,0,'C');
+			}
+			else {
+				$texto=iconv('UTF-8', 'windows-1252',substr($row_ava2["nombre_aval"],0,$pos1));
+				$pdf->Cell(70,4,$texto,0,0,'C');
+				$pdf->Ln(4);
+				$texto=iconv('UTF-8', 'windows-1252',trim(substr($row_ava2["nombre_aval"],$pos2,40)));
+				$pdf->Cell(70,4,$texto,0,0,'C');
+			}
+		}
+		
+		$contador=$contador+1;
+	 } while ($row_ava2 = mysql_fetch_assoc($ava2));
+	 
+		$pdf->Ln(2);
+
+	for ($i=1; $i<=$contador;$i++)
+	{
+		if ($i==1) {
+			
+			$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+			$pdf->Cell(70,4,$texto,0,0,'C');
+		}
+		if ($i==2) {
+			$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+			$pdf->Cell(0,4,$texto,0,0,'C');
+		}
+	}
+	$pdf->Ln(2);
+	
+	for ($i=1; $i<=$contador;$i++)
+	{
+		if ($i==1) {
+			$texto=iconv('UTF-8', 'windows-1252',"Fiador");
+			$pdf->Cell(70,4,$texto,0,0,'C');
+		}
+		if ($i==2) {
+			$texto=iconv('UTF-8', 'windows-1252',"Fiador");
+			$pdf->Cell(0,4,$texto,0,0,'C');
+		}
+	}
+	$pdf->Ln(26);
+	
+	$texto=iconv('UTF-8', 'windows-1252',$row_contra["nombre_vendedor"]);
+	$pdf->Cell(70,4,$texto,0,0,'C');
+	
+	$texto=iconv('UTF-8', 'windows-1252',$row_contra["nombre_testigo"]);
+	$pdf->Cell(0,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+	$pdf->Cell(70,4,$texto,0,0,'C');
+	
+	$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+	$pdf->Cell(0,4,$texto,0,0,'C');	
+	$pdf->Ln(3);
+	
+	$texto=iconv('UTF-8', 'windows-1252',"Testigo");
+	$pdf->Cell(70,4,$texto,0,0,'C');
+	
+	$texto=iconv('UTF-8', 'windows-1252',"Testigo");
+	$pdf->Cell(0,4,$texto,0,0,'C');	
+	/*
+		$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+		$pdf->Cell(70,4,$texto,0,0,'C');
+				
+		if ($contador==1) {
+			$texto=iconv('UTF-8', 'windows-1252',"---------------------------------------------------------------");
+			$pdf->Cell(0,4,$texto,0,0,'C');
+			$pdf->Ln(2);
+			
+			//$texto=iconv('UTF-8', 'windows-1252',"Vendedor");
+			//$pdf->Cell(0,4,$texto,0,0,'C');
+		}else {
+		$pdf->Ln(2);
+		}
+		
+		$texto=iconv('UTF-8', 'windows-1252',"Fiador");
+		$pdf->Cell(70,4,$texto,0,0,'C');
+		if ($contador==1) {
+			$texto=iconv('UTF-8', 'windows-1252',"Testigo");
+			$pdf->Cell(0,4,$texto,0,0,'C');
+		}
+
+		*/
+		//$pdf->Ln(15);
+		
+	
+	 
+	/*$texto=iconv('UTF-8', 'windows-1252',"Nombre del testigo 2");
+	$pdf->Cell(0,4,$texto,0,0,'C');
+	$pdf->Ln(2);
+	 */
+	 $pdf->Ln(20);
+	 
+	$texto=iconv('UTF-8', 'windows-1252',"CONTRATO REGISTRADO ANTE LA PROCURADURIA FEDERAL DEL CONSUMIDOR BAJO EL NUMERO DE REGISTRO 30788-001 DE FECHA 12-MAYO-1999 Y SOLO PODRA SER UTILIZADO POR SOCIOS ACTIVOS DE LA ASOCIACION DE COMERCIANTES EN AUTOMOVILES Y CAMIONES NUEVOS Y USADOS, A. C., QUEDANDO ESTRICTAMENTE PROHIBIDO SU USO POR PARTICULARES O PERSONAS MORALES NO AFILIADAS A LA A. N. C. A. A. C.");
+	$pdf->MultiCell(164,4,$texto,0,'J');
+	$pdf->Ln(10);
+	
+//	$pdf->Cell(10,5,"Unidad de luces",1,0,L,true); 
+//	$pdf->Cell(45,5,"Luces",1,0,L,true); 
+//	$pdf->Cell(65,5,"Antena",1,0,L,true); 
+	//	$pdf->AddPage(); 
+//	$pdf->BasicTable($header,$data);
+    //$pdf->AddPage(); 
+    
+/*
+	$temporal="";
+	$pdf->SetFillColor(230,230,0);
+	$pdf->Cell(27,5,"Clave Electoral",1,0,L,true); 
+	$pdf->Cell(55,5,"Nombre",1,0,L,true); 
+	$pdf->Cell(7,5,"Edad",1,0,L,true); 
+	$pdf->Cell(7,5,"Sexo",1,0,L,true); 
+	$pdf->Cell(80,5,"Direccion",1,0,L,true); 
+	$pdf->Cell(8,5,"C.P.",1,0,L,true); 
+	$pdf->Cell(18,5,"Fol. Nac.",1,0,L,true); 
+	$pdf->Cell(10,5,"Distrito",1,0,L,true); 
+	$pdf->Cell(11,5,"Municipio",1,0,L,true); 
+	$pdf->Cell(10,5,"Seccion",1,0,L,true); 
+	$pdf->Cell(12,5,"Localidad",1,0,L,true); 
+	$pdf->Cell(10,5,"Manzana",1,0,L,true); 
+	$pdf->Cell(10,5,"Voto?",1,0,L,true); 
+	$pdf->Cell(14,5,"Promovido?",1,0,L,true); 
+	$pdf->Ln(5); 
+	do {
+	    $pdf->Cell(27,5,$row_Recordset1["CLAVE_ELEC"],1); 
+		$pdf->Cell(55,5,$row_Recordset1["NOMBRE"]." ".$row_Recordset1["A_PATERNO"]." ".$row_Recordset1["A_MATERNO"],1); 
+		$pdf->Cell(7,5,$row_Recordset1["EDAD"],1); 
+		$pdf->Cell(7,5,$row_Recordset1["SEXO"],1); 
+		if (strlen(trim($row_Recordset1["INTERIOR"])) > 0) {$temporal = " Int. ".$row_Recordset1["INTERIOR"];} else {$temporal="";}
+		$pdf->Cell(80,5,$row_Recordset1["CALLE"]." ".$row_Recordset1["EXTERIOR"].$temporal."\n".$row_Recordset1["COLONIA"],1); 
+		$pdf->Cell(8,5,$row_Recordset1["COD_POS"],1);
+		$pdf->Cell(18,5,$row_Recordset1["FOL_NAC"],1);	
+		$pdf->Cell(10,5,$row_Recordset1["DISTRITO"],1);	
+		$pdf->Cell(11,5,$row_Recordset1["MUNICIPIO"],1);	
+		$pdf->Cell(10,5,$row_Recordset1["SECCION"],1);	
+		$pdf->Cell(12,5,$row_Recordset1["LOCALIDAD"],1);	
+		$pdf->Cell(10,5,$row_Recordset1["MANZANA"],1);	
+		if (strlen(trim($row_Recordset1["x"])) == "1") {$temporal = "Si";} else {$temporal="No";}
+		$pdf->Cell(10,5,$temporal,1);	
+		if (strlen(trim($row_Recordset1["INV_SOCIAL"])) == "1") {$temporal = "Si";} else {$temporal="No";}
+		$pdf->Cell(14,5,$temporal,1);	
+    	$pdf->Ln(5); 
+	}while ( $row_Recordset1 = mysql_fetch_assoc($Recordset1) );
+	//while ( $datos = mysql_fetch_array($Recordset1) );
+*/
+	$pdf->Output();
+//	mysql_free_result($Recordset1);
+	//echo "PDF";
+	exit;

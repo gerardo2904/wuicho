@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_empresa" value="name:clave_empresa;datatype:int,name:nombre_empresa;datatype:string,name:rfc_empresa;datatype:string,name:domicilio_empresa;datatype:string,name:ciudad_empresa;datatype:string,name:cp_empresa;datatype:string,name:tel_empresa;datatype:string,name:fax_empresa;datatype:string,name:email_empresa;datatype:string,name:representante_empresa;datatype:string,name:activo_empresa;datatype:int" />
+</info>

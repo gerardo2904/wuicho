@@ -1,0 +1,11 @@
+
+Esta funcion la podemos cargar en el evento onchange de una lista y lo que hace es
+recargar la pagina con el parametro mandado (variable).
+
+<script>
+function datos(){
+var variable = window.document.Form.marca_carro.value;
+pagina="catalogo.php?parametro1="+variable;
+window.location = pagina;
+}
+</script>

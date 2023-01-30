@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_verifica" value="name:clave_testigo;datatype:int,name:nombre_testigo;datatype:string,name:rfc_testigo;datatype:string,name:domicilio_testigo;datatype:string,name:ciudad_testigo;datatype:string,name:cp_testigo;datatype:string,name:tel_testigo;datatype:string,name:fax_testigo;datatype:string,name:email_testigo;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_verifica2" value="name:clave_testigo;datatype:int,name:nombre_testigo;datatype:string,name:rfc_testigo;datatype:string,name:domicilio_testigo;datatype:string,name:ciudad_testigo;datatype:string,name:cp_testigo;datatype:string,name:tel_testigo;datatype:string,name:fax_testigo;datatype:string,name:email_testigo;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_testigo" value="name:clave_testigo;datatype:int,name:nombre_testigo;datatype:string,name:rfc_testigo;datatype:string,name:domicilio_testigo;datatype:string,name:ciudad_testigo;datatype:string,name:cp_testigo;datatype:string,name:tel_testigo;datatype:string,name:fax_testigo;datatype:string,name:email_testigo;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_testigo2" value="name:clave_testigo;datatype:int,name:nombre_testigo;datatype:string,name:rfc_testigo;datatype:string,name:domicilio_testigo;datatype:string,name:ciudad_testigo;datatype:string,name:cp_testigo;datatype:string,name:tel_testigo;datatype:string,name:fax_testigo;datatype:string,name:email_testigo;datatype:string,name:activo;datatype:int" />
+</info>

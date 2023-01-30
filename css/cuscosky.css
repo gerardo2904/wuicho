@@ -1,0 +1,253 @@
+/* 
+	Cusco Sky table styles
+	written by Braulio Soncco http://www.buayacorp.com
+*/
+
+table, th, td {
+	border: 1px solid #D4E0EE;
+	border-collapse: collapse;
+	font-family: "Trebuchet MS", Arial, sans-serif;
+	color: #555;
+	text-align: center;
+}
+
+caption {
+	font-size: 150%;
+	font-weight: bold;
+	margin: 5px;
+}
+
+td, th {
+	padding: 4px;
+	text-align: left;
+	color: #FFF;
+}
+
+thead th {
+	text-align: center;
+	background: #E6EDF5;
+	color: #4F76A3;
+	font-size: 100% !important;
+}
+
+tbody th {
+	font-weight: bold;
+}
+
+tbody tr { background: #F7F9FC; }
+
+tbody tr.odd { background: #F7F9FC; }
+
+table a:link {
+	color: #718ABE;
+	text-decoration: none;
+}
+
+table a:visited {
+	color: #718ABE;
+	text-decoration: none;
+}
+
+table a:hover {
+	color: #718ABE;
+	text-decoration: underline !important;
+	text-align: left;
+	/*font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif; */
+}
+
+tfoot th, tfoot td {
+	font-size: 85%;
+}.menu_fuerza {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+.titulo {
+	font-size: 36px;
+	color: #006;
+}
+.titulo strong {
+	font-size: larger;
+}
+
+#letra_cuerpo .normal {
+	font-size: 12px;
+}
+
+.normal_letra {
+	font-size: 12px;
+	color:#000;
+}
+
+.normal_letra_negrita {
+	font-size: 12px;
+	color:#000;
+	font-weight:bold;
+}
+
+.normal_letra_desabilitada {
+	font-size: 12px;
+	color:#989898 ;
+	font-weight:bold;
+}
+
+
+.normal_letra_sombra {
+	font-size: 14px;
+	font-weight:bold;
+	text-shadow: 0 0 0.2em #9A98FE;
+	
+}
+
+.normal_titulo {
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-weight:bold;
+	color:#FFF;
+}
+
+.normal_titulo_N {
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:normal;
+	font-weight:bold;
+	color:#000;
+}
+
+.normal_titulo_NN {
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:normal;
+	
+	color:#000;
+}
+
+.normal_titulo_NN_azul {
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-style:normal;
+	color:#006;
+}
+
+.negrita_chica {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color:#000;
+}
+
+.negrita_chica2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color:#FFF;
+}
+
+.a:link {
+	color: #718ABE;
+	text-decoration: none;
+}
+	
+.a:hover {
+	color: #718ABE;
+	text-decoration: underline !important;
+	text-align: left;
+	/*font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif; */
+}
+
+.a:visited {
+	color: #718ABE;
+	text-decoration: none;
+}
+
+textarea { 
+	/*resize:none;  */
+	
+	-moz-resize: horizontal;
+    -webkit-resize: horizontal;
+    resize: horizontal;
+    background-color: #F7F9FC ;
+} 
+
+.no_bordes{
+	border-width:0;
+}
+
+.calificacion_revision{
+background: #F00; 
+color: #FF0;	
+}
+
+.calificacion_bajo{
+background: #F90; 
+color: #000;	
+}
+
+.calificacion_regular{
+background: #FF0; 
+color: #000;	
+}
+
+.calificacion_esperado{
+background: #0C0; 
+color: #000;	
+}
+
+.calificacion_sobresaliente{
+background: #00C; 
+color: #FF0;	
+}
+
+
+.titulos{
+font-family: verdana, sans-serif;
+color: #00137D;
+font-size: 14px;
+font-weight: bold;
+font-style: italic;
+text-transform: uppercase;
+}
+
+.inputcentrado {
+   text-align: center
+ }
+
+
+body {
+    background-color: #FFFFFF ;
+    /* Chrome & Safari */
+    /*background-image:
+ 
+    -webkit-linear-gradient(0deg, transparent 80%, rgba(0, 0, 0, 0.1) 100% ); 
+    -webkit-linear-gradient(0deg, transparent 40%, rgba(0, 0, 0, 0.1) 40% ),
+    -webkit-linear-gradient(0deg, transparent 50%, rgba(0, 0, 0, 0.1) 50% ),
+    -webkit-linear-gradient(0deg, transparent 60%, rgba(0, 0, 0, 0.1) 60% ),
+    -webkit-linear-gradient(0deg, transparent 70%, rgba(0, 0, 0, 0.1) 70% ),
+    -webkit-linear-gradient(0deg, transparent 80%, rgba(0, 0, 0, 0.1) 80% ),
+    -webkit-linear-gradient(0deg, transparent 90%, rgba(0, 0, 0, 0.1) 90% ),
+    -webkit-linear-gradient(0deg, transparent 100%, rgba(0, 0, 0, 0.1) 100% ); */
+}
+
+
+#evaluado .a:link {
+	color: #000;
+	text-decoration: none;
+}
+	
+#evaluado .a:hover {
+	color: #000;
+	text-decoration: underline !important;
+	text-align: left;
+	/*font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif; */
+}
+
+#evaluado .a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+

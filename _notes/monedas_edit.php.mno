@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_verifica2" value="name:clave_moneda;datatype:int,name:moneda;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_verifica" value="name:clave_moneda;datatype:int,name:moneda;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_moneda" value="name:clave_moneda;datatype:int,name:moneda;datatype:string,name:activo;datatype:int" />
+	<infoitem key="UD_moneda2" value="name:clave_moneda;datatype:int,name:moneda;datatype:string,name:activo;datatype:int" />
+</info>

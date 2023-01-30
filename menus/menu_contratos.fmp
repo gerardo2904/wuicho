@@ -1,0 +1,55 @@
+<TEMPLATE APPNAME="123FLASHMENU" VER_NUMBER="2" VER_LOWNUMBER="2" TYPE="9" SWF_NAME="treeview" SUB_LEVEL="0" CATALOG="2" SWF_SHOWNAME="treeview" WIDTH="250" HEIGHT="300" BGCOLOR="clWhite" FLASHBGCOLOR="clWhite" TRANSPARENT="false">
+	<GROUP_ATTRIBUTE>
+		<PARAM ID="1" DF_VALUE="new item"/>
+		<PARAM ID="2" DF_VALUE=""/>
+		<PARAM ID="3" DF_VALUE="_blank,_parent,_self,_top"/>
+	</GROUP_ATTRIBUTE>
+	<GROUP_MENU>
+		<GROUP_PARAM ID="380">
+			<PARAM ID="384" DF_VALUE="verdana"/>
+			<PARAM ID="385" DF_VALUE="10"/>
+			<PARAM ID="386" DF_VALUE="false"/>
+			<PARAM ID="387" DF_VALUE="true"/>
+			<PARAM ID="388" DF_VALUE="false"/>
+			<PARAM ID="389" DF_VALUE="left,center,right"/>
+			<PARAM ID="390" DF_VALUE="1"/>
+			<PARAM ID="391" DF_VALUE="clBlack"/>
+			<PARAM ID="392" DF_VALUE="clYellow"/>
+			<PARAM ID="393" DF_VALUE="clWhite"/>
+		</GROUP_PARAM>
+		<GROUP_PARAM ID="381">
+			<PARAM ID="394" DF_VALUE=""/>
+			<PARAM ID="395" DF_VALUE=""/>
+			<PARAM ID="396" DF_VALUE=""/>
+			<PARAM ID="397" DF_VALUE=""/>
+			<PARAM ID="398" DF_VALUE=""/>
+		</GROUP_PARAM>
+		<GROUP_PARAM ID="382">
+			<PARAM ID="402" DF_VALUE="false"/>
+			<PARAM ID="403" DF_VALUE="haloGreen,haloBlue,haloOrange"/>
+			<PARAM ID="404" DF_VALUE="clBlue"/>
+			<PARAM ID="405" DF_VALUE="clBlue"/>
+		</GROUP_PARAM>
+		<PARAM ID="383" DF_VALUE="20"/>
+		<PARAM ID="399" DF_VALUE="17"/>
+		<PARAM ID="400" DF_VALUE="250"/>
+		<PARAM ID="401" DF_VALUE="0xFFFFFF"/>
+		<PARAM ID="406" DF_VALUE="none,inset,outset,solid"/>
+		<PARAM ID="407" DF_VALUE="false"/>
+		<PARAM ID="408" DF_VALUE="0"/>
+		<PARAM ID="409" DF_VALUE="false"/>
+		<PARAM ID="17" DF_VALUE="false"/>
+		<PARAM ID="150" DF_VALUE="false"/>
+	</GROUP_MENU>
+	<GROUP_SIZE>
+		<PARAM ID="140" DF_VALUE="250"/>
+		<PARAM ID="141" DF_VALUE="300"/>
+	</GROUP_SIZE>
+	<GROUP_PAGE>
+		<PARAM ID="143" DF_VALUE="clWhite"/>
+		<PARAM ID="144" DF_VALUE="clWhite"/>
+		<PARAM ID="145" DF_VALUE="false"/>
+	</GROUP_PAGE>
+	<MENU>
+		<item name="Configuración" callback="onClick"><item name="Usuarios" url="usuarios_list.php" target="principal" callback="onClick"/><item name="Empresas" url="empresas_list.php" target="principal" callback="onClick"/><item name="Monedas" url="monedas_list.php" target="principal" callback="onClick"/><item name="Cobradores" url="cobradores_list.php" target="principal" callback="onClick"/><item name="Testigos" url="testigos_list.php" target="principal" callback="onClick"/><item name="Vendedores" url="vendedores_list.php" target="principal" callback="onClick"/></item><item name="Inventarios de Autos" callback="onClick"><item name="Marcas" url="marca_list.php" target="principal" callback="onClick"/><item name="Tipos" url="tipo_list.php" target="principal" callback="onClick"/><item name="Inventario" url="inventario_list.php" target="principal" callback="onClick"/></item><item name="Sección de Clientes" callback="onClick"><item name="Clientes" url="clientes_list.php" target="principal" callback="onClick"/><item name="Referencias" url="referencias_list.php" target="principal" callback="onClick"/><item name="Avales" callback="onClick"><item name="Avales" url="avales_list.php" target="principal" callback="onClick"/><item name="Referencias" url="referencias_aval_list.php" target="principal" callback="onClick"/></item><item name="Pagares" url="pagares_independientes_list.php" target="principal" callback="onClick"/></item><item name="Contratos" callback="onClick"><item name="Nuevo Contrato" url="contrato.php" target="principal" callback="onClick"/><item name="Lista de contratos" url="contratos_list.php" target="principal" callback="onClick"/></item></MENU>
+</TEMPLATE>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="PageAccessControlMethod" value="useAccessList" />
+	<infoitem key="PageAccessControl" value="2,1,0" />
+	<infoitem key="MM_URL1" value="vendido" />
+	<infoitem key="MM_URL_Count" value="4" />
+	<infoitem key="MM_URL2" value="garantia" />
+	<infoitem key="MM_Session1" value="MM_UserId" />
+	<infoitem key="MM_Session_Count" value="1" />
+	<infoitem key="MM_URL3" value="acuenta" />
+	<infoitem key="MM_URL4" value="interes" />
+</info>
